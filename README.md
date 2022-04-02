@@ -1,3 +1,5 @@
+*This is globle but you can play it more than once per day*
+
 # Notes about Globle
 
 **Version 1.4.0** - [Change log](CHANGELOG.md)
