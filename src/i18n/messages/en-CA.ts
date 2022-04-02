@@ -3,10 +3,11 @@ import { Messages } from "../../lib/locale";
 export const English: Messages = {
   name: "English",
   helpTitle: "How to play",
-  help1: `Every day, there is a new Mystery Country. Your goal is to guess the
+  help1: `In this version of globle, you are able to play as many times as you want. Your goal is to guess the
   mystery country using the fewest number of guesses. Each incorrect guess
   will appear on the globe with a colour indicating how close it is to the
-  Mystery Country. The <b>hotter</b> the colour, the closer you are to the answer.`,
+  Mystery Country. The <b>hotter</b> the colour, the closer you are to the answer.
+  `,
   help2: `For example, if the Mystery Country is <b>Japan</b>, then the following
   countries would appear with these colours if guessed:`,
   help3: `A new Mystery Country will be available every day!`,
@@ -17,9 +18,11 @@ export const English: Messages = {
   Aux1: `<b>["Click", "Tap"]</b> the globe to play!`,
   Aux2: "Have a question?",
   Aux3: "Check out the FAQ",
+  Aux4: "click here to get to the original globle game",
   Footer1: "by The Abe Train",
+  Footer4: "slight modifications by dojje",
   Footer2: "Enjoying the game?",
-  Footer3: "Buy me a coffee",
+  Footer3: "Buy the abe train a coffee",
   Loading: "Loading...",
   FAQTitle: "FAQ",
   q1: "1. How is the distance between the answer and my guess calculated?",

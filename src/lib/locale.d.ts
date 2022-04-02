@@ -13,7 +13,9 @@ export type Messages = {
   Aux1: string;
   Aux2: string;
   Aux3: string;
+  Aux4: string;
   Footer1: string;
+  Footer4: string;
   Footer2: string;
   Footer3: string;
   Loading: string;

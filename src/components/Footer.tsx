@@ -45,6 +45,41 @@ export default function Footer() {
           </svg>
         </a>
       </span>
+      <span className="max-w-[40%] space-x-1">
+        <a href="https://the-abe-train.com">
+          <FormattedMessage id="Footer4" />
+        </a>
+        <a
+          href="https://twitter.com/dideaus"
+          aria-label="Twitter"
+          className="inline"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={iconWidth}
+            viewBox="0 0 24 24"
+            fill={nightMode ? "rgb(209 213 219)" : "rgb(17 24 39)"}
+            className="inline"
+          >
+            <path d={getPath("twitter")} />
+          </svg>
+        </a>
+        <a
+          href="https://github.com/dojje"
+          aria-label="Github"
+          className="inline"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={iconWidth}
+            viewBox="0 0 24 24"
+            fill={nightMode ? "rgb(209 213 219)" : "rgb(17 24 39)"}
+            className="inline"
+          >
+            <path d={getPath("github")} />
+          </svg>
+        </a>
+      </span>
       <div className="flex flex-col sm:flex-row justify-start">
         <span>
           <FormattedMessage id="Footer2" />

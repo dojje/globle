@@ -41,7 +41,7 @@ export default function Header({ setScreen, setReSpin, setShowStats }: Props) {
             className="text-4xl font-extrabold"
             style={{ fontFamily: "'Montserrat'" }}
           >
-            GLOBLE
+            MORE GLOBLE
           </h1>
         </button>
         <div className="space-x-1 flex absolute right-0 bottom-1">

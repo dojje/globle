@@ -104,6 +104,7 @@ export default function Auxilliary({ children, setScreen, screen }: Props) {
         </b>
       </div>
       {(screen === "Help" || screen === "Settings") && (
+        <>
         <span className="mt-10 mb-4">
           <FormattedMessage id="Aux2" />{" "}
           <button
@@ -113,6 +114,14 @@ export default function Auxilliary({ children, setScreen, screen }: Props) {
             <FormattedMessage id="Aux3" />
           </button>
         </span>
+        <span className="mt-10 mb-4">
+          <a href="https://globle-game.com">
+            <u>
+              <FormattedMessage id="Aux4" />{" "}
+            </u>
+          </a>
+        </span>
+        </>
       )}
       {(screen === "Help" || screen === "Info") && (
         <div className="flex-grow flex items-end">
