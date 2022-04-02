@@ -1,24 +1,26 @@
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { GlobeMethods } from "react-globe.gl";
 import { Country, LanguageName } from "../lib/country";
-import { answerName } from "../util/answer";
 import { findCentre } from "../util/centre";
 import { turnGlobe } from "../util/globe";
 import { LocaleContext } from "../i18n/LocaleContext";
 import { Locale } from "../lib/locale";
 import { FormattedMessage } from "react-intl";
+import { getCountry } from "../util/answer";
 
 type Props = {
   guesses: Country[];
   win: boolean;
   globeRef: React.MutableRefObject<GlobeMethods>;
+  seed: number;
 };
 
-function reorderGuesses(guessList: Country[]) {
+function reorderGuesses(guessList: Country[], seed: number) {
+  let answerCountry = getCountry(seed);
   return [...guessList].sort((a, b) => {
-    if (a.properties.NAME === answerName) {
+    if (a.properties.NAME === answerCountry.properties.NAME) {
       return -1;
-    } else if (b.properties.NAME === answerName) {
+    } else if (b.properties.NAME === answerCountry.properties.NAME) {
       return 1;
     } else {
       return a.proximity - b.proximity;
@@ -26,8 +28,8 @@ function reorderGuesses(guessList: Country[]) {
   });
 }
 
-export default function List({ guesses, win, globeRef }: Props) {
-  const [orderedGuesses, setOrderedGuesses] = useState(reorderGuesses(guesses));
+export default function List({ guesses, win, globeRef, seed }: Props) {
+  const [orderedGuesses, setOrderedGuesses] = useState(reorderGuesses(guesses, seed));
   const { locale } = useContext(LocaleContext);
   const langNameMap: Record<Locale, LanguageName> = {
     "es-MX": "NAME_ES",
@@ -36,7 +38,7 @@ export default function List({ guesses, win, globeRef }: Props) {
   const langName = langNameMap[locale];
 
   useEffect(() => {
-    setOrderedGuesses(reorderGuesses(guesses));
+    setOrderedGuesses(reorderGuesses(guesses, seed));
   }, [guesses]);
 
   function formatKm(m: number) {

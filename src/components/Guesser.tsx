@@ -1,6 +1,5 @@
 import { FormEvent, useContext, useState } from "react";
 import { Country, LanguageName } from "../lib/country";
-import { answerCountry, answerName } from "../util/answer";
 import { Message } from "./Message";
 import { polygonDistance } from "../util/distance";
 import alternateNames from "../data/alternate_names.json";
@@ -9,6 +8,7 @@ import { Locale } from "../lib/locale";
 import localeList from "../i18n/messages";
 import { FormattedMessage } from "react-intl";
 import { langNameMap } from "../i18n/locales";
+import { getCountry } from "../util/answer";
 const countryData: Country[] = require("../data/country_data.json").features;
 
 type Props = {
@@ -16,12 +16,14 @@ type Props = {
   setGuesses: React.Dispatch<React.SetStateAction<Country[]>>;
   win: boolean;
   setWin: React.Dispatch<React.SetStateAction<boolean>>;
+  seed: number;
 };
 
-export default function Guesser({ guesses, setGuesses, win, setWin }: Props) {
+export default function Guesser({ guesses, setGuesses, win, setWin, seed }: Props) {
   const [guessName, setGuessName] = useState("");
   const [error, setError] = useState("");
   const { locale } = useContext(LocaleContext);
+  let answerCountry = getCountry(seed);
 
   const langName = langNameMap[locale];
 
@@ -65,7 +67,7 @@ export default function Guesser({ guesses, setGuesses, win, setWin }: Props) {
       setError(localeList[locale]["Game5"]);
       return;
     }
-    if (guessCountry.properties.NAME === answerName) {
+    if (guessCountry.properties.NAME === answerCountry.properties.NAME) {
       setWin(true);
     }
     return guessCountry;
@@ -112,7 +114,7 @@ export default function Guesser({ guesses, setGuesses, win, setWin }: Props) {
           <FormattedMessage id="Game2" />
         </button>
       </form>
-      <Message win={win} error={error} guesses={guesses.length} />
+      <Message win={win} error={error} guesses={guesses.length} seed={seed} />
     </div>
   );
 }

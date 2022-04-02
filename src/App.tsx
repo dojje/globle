@@ -11,9 +11,10 @@ import Fade from "./transitions/Fade";
 
 function App() {
   // State
-  const [screen, setScreen] = useState("Help");
+  const [screen, setScreen] = useState("Help"); // Can be Help or Game, used for telling the modes apart
   const [reSpin, setReSpin] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [seed, setSeed] = useState(Math.floor(Math.random() * 1234))
 
   // TODO Make sure this doesn't override manually chosen locales
   // const browserLocale = useIntl().locale as Locale;
@@ -52,7 +53,7 @@ function App() {
         </Auxilliary>
       );
     } else {
-      return <Game reSpin={reSpin} setShowStats={setShowStats} />;
+      return <Game reSpin={reSpin} setShowStats={setShowStats} seed={seed}/>;
     }
   };
 

@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { GlobeMethods } from "react-globe.gl";
 import { Country } from "../lib/country";
-import { answerCountry, answerName } from "../util/answer";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Guesses, Stats } from "../lib/localStorage";
 import { dateDiffInDays, today } from "../util/dates";
 import { polygonDistance } from "../util/distance";
 import {getColourEmoji} from "../util/colour";
+import { getCountry } from "../util/answer";
 
 const Globe = lazy(() => import("./Globe"));
 const Guesser = lazy(() => import("./Guesser"));
@@ -16,14 +16,16 @@ const countryData: Country[] = require("../data/country_data.json").features;
 type Props = {
   reSpin: boolean;
   setShowStats: React.Dispatch<React.SetStateAction<boolean>>;
+  seed: number;
 };
 
-export default function Game({ reSpin, setShowStats }: Props) {
+export default function Game({ reSpin, setShowStats, seed }: Props) {
   // Get data from local storage
   const [storedGuesses, storeGuesses] = useLocalStorage<Guesses>("guesses", {
     day: today,
     countries: [],
   });
+  let answerCountry = getCountry(seed);
 
   const firstStats = {
     gamesWon: 0,
@@ -54,7 +56,7 @@ export default function Game({ reSpin, setShowStats }: Props) {
     });
   }
   // Check if win condition already met
-  const alreadyWon = storedCountryNames.includes(answerName);
+  const alreadyWon = storedCountryNames.includes(answerCountry.properties.NAME);
 
   // Now we're ready to start the game! Set up the game states with the data we
   // already know from the stored info.
@@ -113,11 +115,12 @@ export default function Game({ reSpin, setShowStats }: Props) {
         setGuesses={setGuesses}
         win={win}
         setWin={setWin}
+        seed={seed}
       />
       {!reSpin && (
         <div>
-          <Globe guesses={guesses} globeRef={globeRef} />
-          <List guesses={guesses} win={win} globeRef={globeRef} />
+          <Globe guesses={guesses} globeRef={globeRef} seed={seed}/>
+          <List guesses={guesses} win={win} globeRef={globeRef} seed={seed} />
         </div>
       )}
     </Suspense>

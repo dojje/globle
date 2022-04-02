@@ -1,21 +1,23 @@
 // import useCheckMobile from "../hooks/useCheckMobile";
 import { isMobile } from "react-device-detect";
-import { answerCountry, answerName } from "../util/answer";
 import { FormattedMessage } from "react-intl";
 import { useContext } from "react";
 import { LocaleContext } from "../i18n/LocaleContext";
 import { langNameMap } from "../i18n/locales";
+import { getCountry } from "../util/answer";
 
 type Props = {
   win: boolean;
   error: any;
   guesses: number;
+  seed: number;
 };
 
-export function Message({ win, error, guesses }: Props) {
+export function Message({ win, error, guesses, seed }: Props) {
   const { locale } = useContext(LocaleContext);
+  let answerCountry = getCountry(seed);
 
-  let name = answerName;
+  let name = answerCountry.properties.NAME;
   if (locale !== "en-CA") {
     const langName = langNameMap[locale];
     name = answerCountry["properties"][langName];

@@ -2,21 +2,23 @@ import { useContext, useEffect, useRef, useState } from "react";
 import ReactGlobe, { GlobeMethods } from "react-globe.gl";
 import { Country } from "../lib/country";
 import { findCentre } from "../util/centre";
-import { answerCountry } from "../util/answer";
 import { globeImg, turnGlobe } from "../util/globe";
 import { ThemeContext } from "../context/ThemeContext";
 import { getColour } from "../util/colour";
 import { isMobile } from "react-device-detect";
+import { getCountry } from "../util/answer";
 const territoryData: Country[] = require("../data/territories.json").features;
 
 type Props = {
   guesses: Country[];
   globeRef: React.MutableRefObject<GlobeMethods>;
+  seed: number;
 };
 
-export default function Globe({ guesses, globeRef }: Props) {
+export default function Globe({ guesses, globeRef, seed }: Props) {
   // State
   const [places, setPlaces] = useState(guesses);
+  let answerCountry = getCountry(seed);
 
   // Theme
   const { nightMode, highContrast } = useContext(ThemeContext).theme;
