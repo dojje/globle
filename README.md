@@ -1,4 +1,4 @@
-*This is [globle](https://github.com/the-abe-train/globle)sbut you can play it more than once per day*
+*This is [globle](https://github.com/the-abe-train/globle) but you can play it more than once per day*
 s# Notes about Globle
 
 **Version 1.4.0** - [Change log](CHANGELOG.md)
