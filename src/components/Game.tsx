@@ -45,7 +45,7 @@ export default function Game({ reSpin, setShowStats, seed }: Props) {
   let storedCountryNames: string[] = [];
   let storedCountries: Country[] = [];
   if (today <= storedGuesses.day) {
-    storedCountryNames = storedGuesses.countries;
+    // storedCountryNames = storedGuesses.countries;
     storedCountries = storedCountryNames.map((guess) => {
       const foundCountry = countryData.find((country) => {
         return country.properties.NAME === guess;
