@@ -1,5 +1,6 @@
-*This is [globle](https://github.com/the-abe-train/globle) but you can play it more than once per day*
-s# Notes about Globle
+*This is [globle](https://globle-game.com/) but you can play it more than once per day. The original was made by [the-abe-train](https://github.com/the-abe-train). The original globle repository is [here](https://github.com/the-abe-train/globle).*
+
+# Notes about Globle
 
 **Version 1.4.0** - [Change log](CHANGELOG.md)
 
